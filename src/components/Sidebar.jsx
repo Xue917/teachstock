@@ -38,8 +38,8 @@ export default function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }) 
                 <span className="text-sm font-extrabold text-white block truncate tracking-wide">
                   台股葵花寶典
                 </span>
-                <span className="text-[10px] text-rose-400 font-bold block font-mono">
-                  TAIWAN STOCK PRO
+                <span className="text-[10px] text-slate-400 font-medium block">
+                  新手到高手的實戰指南
                 </span>
               </div>
             )}
@@ -112,11 +112,11 @@ export default function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }) 
               <Sparkles className="w-3.5 h-3.5 text-rose-400" />
               <span>開源旗艦版</span>
             </span>
-            <span className="font-mono text-[10px] text-slate-500">v2.5 PRO</span>
+            <span className="font-mono text-[10px] text-slate-500">v2.5</span>
           </div>
         ) : (
           <div className="flex justify-center text-[10px] text-slate-500 font-mono">
-            PRO
+            v2.5
           </div>
         )}
       </div>

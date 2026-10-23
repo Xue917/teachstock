@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { 
-  Compass, LineChart, Target, BookOpen, Calculator, TrendingUp, AlertTriangle, 
-  Search, Zap, Building2, Flame, ChevronLeft, ChevronRight, Menu, PanelLeftClose, PanelLeftOpen
+  Compass, LineChart, Target, BookOpen, Calculator,
+  Search, Zap, Building2, Flame, ChevronLeft, ChevronRight
 } from 'lucide-react';
 
-export default function Navbar({ activeTab, setActiveTab, isSidebarOpen, setIsSidebarOpen }) {
+export default function Navbar({ activeTab, setActiveTab }) {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -73,53 +73,8 @@ export default function Navbar({ activeTab, setActiveTab, isSidebarOpen, setIsSi
 
   return (
     <header className="sticky top-0 z-30 bg-slate-900/98 backdrop-blur-md border-b border-slate-800 shadow-xl select-none">
-      {/* Brand Header Row with Sidebar Toggle */}
-      <div className="px-3 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between border-b border-slate-800/60">
-        <div className="flex items-center space-x-2.5 sm:space-x-3">
-          {/* Toggle Left Sidebar Button */}
-          <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition"
-            title={isSidebarOpen ? '收合左側欄' : '展開左側欄'}
-          >
-            {isSidebarOpen ? <PanelLeftClose className="w-4 h-4 text-rose-400" /> : <PanelLeftOpen className="w-4 h-4 text-emerald-400" />}
-            <span className="hidden sm:inline">{isSidebarOpen ? '收合側欄' : '展開側欄'}</span>
-          </button>
-
-          {/* Logo */}
-          <div 
-            className="flex items-center space-x-2.5 cursor-pointer"
-            onClick={() => setActiveTab('guide')}
-          >
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-rose-500 via-amber-500 to-emerald-500 flex items-center justify-center shadow-lg shadow-rose-500/20 shrink-0">
-              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-slate-950 font-black stroke-[2.5]" />
-            </div>
-            <div>
-              <div className="flex items-center space-x-2">
-                <span className="text-sm sm:text-lg font-black tracking-wide bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
-                  台股葵花寶典
-                </span>
-                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
-                  PRO
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right side status badge */}
-        <div className="flex items-center space-x-2 text-xs">
-          <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700 text-[11px] font-mono">
-            新手 0 到 100 實戰指南
-          </span>
-          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[11px] font-semibold">
-            🔴 紅漲 🟢 綠跌
-          </span>
-        </div>
-      </div>
-
       {/* Draggable Top Bar with Clickable Left & Right Navigation Arrows */}
-      <div className="relative border-t border-slate-800/80 bg-slate-900/80">
+      <div className="relative bg-slate-900/80">
         {/* Left Scroll Button */}
         {canScrollLeft && (
           <button
