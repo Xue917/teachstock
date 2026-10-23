@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 import BeginnerGuide from './components/BeginnerGuide';
 import MarketClassroom from './components/MarketClassroom';
 import SurgePredictor from './components/SurgePredictor';
@@ -17,6 +18,7 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('guide');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Collapsed by default for max screen space, easily toggleable
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Scroll to top when changing tab
@@ -38,29 +40,51 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-rose-500 selection:text-white">
-      {/* Top Header Navbar for Desktop & Tablet */}
-      <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
+      {/* Left Collapsible Sidebar (Desktop & Tablet) */}
+      <div className="hidden md:block">
+        <Sidebar
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          isOpen={isSidebarOpen}
+          setIsOpen={setIsSidebarOpen}
+        />
+      </div>
 
-      {/* Main Content Area (padding bottom on mobile to accommodate bottom nav) */}
-      <main className="flex-1 w-full pb-16 md:pb-0">
-        {activeTab === 'guide' && (
-          <BeginnerGuide
-            onJumpToToolbox={() => setActiveTab('toolbox')}
-            onJumpToMarket={() => setActiveTab('market')}
-          />
-        )}
-        {activeTab === 'market' && <MarketClassroom />}
-        {activeTab === 'surge' && <SurgePredictor />}
-        {activeTab === 'industry' && <IndustryEncyclopedia />}
-        {activeTab === 'research' && <CompanyResearch />}
-        {activeTab === 'advanced' && <AdvancedTechnical />}
-        {activeTab === 'evaluator' && <StockEvaluator />}
-        {activeTab === 'masters' && <MasterLibrary />}
-        {activeTab === 'toolbox' && <Toolbox />}
-      </main>
+      {/* Main App Container (adjusts left padding when sidebar is open) */}
+      <div 
+        className={`flex-1 flex flex-col transition-all duration-300 ease-in-out ${
+          isSidebarOpen ? 'md:pl-64 sm:md:pl-72' : 'md:pl-16 sm:md:pl-20'
+        }`}
+      >
+        {/* Top Header Navbar with Drag-to-Scroll + Left/Right Arrow Buttons + Sidebar Toggle */}
+        <Navbar 
+          activeTab={activeTab} 
+          setActiveTab={setActiveTab}
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
 
-      {/* Footer */}
-      <Footer setActiveTab={setActiveTab} />
+        {/* Main Content Area */}
+        <main className="flex-1 w-full pb-16 md:pb-0">
+          {activeTab === 'guide' && (
+            <BeginnerGuide
+              onJumpToToolbox={() => setActiveTab('toolbox')}
+              onJumpToMarket={() => setActiveTab('market')}
+            />
+          )}
+          {activeTab === 'market' && <MarketClassroom />}
+          {activeTab === 'surge' && <SurgePredictor />}
+          {activeTab === 'industry' && <IndustryEncyclopedia />}
+          {activeTab === 'research' && <CompanyResearch />}
+          {activeTab === 'advanced' && <AdvancedTechnical />}
+          {activeTab === 'evaluator' && <StockEvaluator />}
+          {activeTab === 'masters' && <MasterLibrary />}
+          {activeTab === 'toolbox' && <Toolbox />}
+        </main>
+
+        {/* Footer */}
+        <Footer setActiveTab={setActiveTab} />
+      </div>
 
       {/* Mobile Bottom Navigation Bar (Visible only on mobile screen < 768px) */}
       <MobileBottomNav 
