@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import BeginnerGuide from './components/BeginnerGuide';
 import MarketClassroom from './components/MarketClassroom';
 import CompanyResearch from './components/CompanyResearch';
+import AdvancedTechnical from './components/AdvancedTechnical';
 import StockEvaluator from './components/StockEvaluator';
 import MasterLibrary from './components/MasterLibrary';
 import Toolbox from './components/Toolbox';
@@ -31,6 +32,7 @@ export default function App() {
         )}
         {activeTab === 'market' && <MarketClassroom />}
         {activeTab === 'research' && <CompanyResearch />}
+        {activeTab === 'advanced' && <AdvancedTechnical />}
         {activeTab === 'evaluator' && <StockEvaluator />}
         {activeTab === 'masters' && <MasterLibrary />}
         {activeTab === 'toolbox' && <Toolbox />}

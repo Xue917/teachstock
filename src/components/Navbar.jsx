@@ -1,11 +1,12 @@
 import React from 'react';
-import { Compass, LineChart, Target, BookOpen, Calculator, TrendingUp, AlertTriangle, Search } from 'lucide-react';
+import { Compass, LineChart, Target, BookOpen, Calculator, TrendingUp, AlertTriangle, Search, Zap } from 'lucide-react';
 
 export default function Navbar({ activeTab, setActiveTab }) {
   const navItems = [
     { id: 'guide', label: '新手 0 到 100 實戰', icon: Compass, badge: '新手入門' },
     { id: 'market', label: '看盤圖解教室', icon: LineChart, badge: '五檔 & K線' },
     { id: 'research', label: '研究與最新熱潮', icon: Search, badge: '開源必讀' },
+    { id: 'advanced', label: '高階技術與當沖', icon: Zap, badge: '破百萬實戰' },
     { id: 'evaluator', label: '這檔股票能不能買？', icon: Target, badge: '四維體檢' },
     { id: 'masters', label: '大師精華庫', icon: BookOpen, badge: '長影片提煉' },
     { id: 'toolbox', label: '實戰算力工具箱', icon: Calculator, badge: '成本與估值' }

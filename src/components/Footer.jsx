@@ -20,6 +20,7 @@ export default function Footer({ setActiveTab }) {
             <button onClick={() => setActiveTab('guide')} className="hover:text-white transition">新手通關指南</button>
             <button onClick={() => setActiveTab('market')} className="hover:text-white transition">看盤教室</button>
             <button onClick={() => setActiveTab('research')} className="hover:text-white transition">研究與最新熱潮</button>
+            <button onClick={() => setActiveTab('advanced')} className="hover:text-white transition">高階技術與當沖</button>
             <button onClick={() => setActiveTab('evaluator')} className="hover:text-white transition">股票能不能買</button>
             <button onClick={() => setActiveTab('masters')} className="hover:text-white transition">大師精華庫</button>
             <button onClick={() => setActiveTab('toolbox')} className="hover:text-white transition">實戰工具箱</button>
