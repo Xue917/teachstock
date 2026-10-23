@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import BeginnerGuide from './components/BeginnerGuide';
 import MarketClassroom from './components/MarketClassroom';
@@ -18,7 +17,7 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('guide');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Collapsed by default for max screen space, easily toggleable
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Open by default on desktop, collapsible via toggle button
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Scroll to top when changing tab
@@ -56,13 +55,7 @@ export default function App() {
           isSidebarOpen ? 'md:pl-64 sm:md:pl-72' : 'md:pl-16 sm:md:pl-20'
         }`}
       >
-        {/* Top Header Navbar with Drag-to-Scroll + Left/Right Arrow Buttons + Sidebar Toggle */}
-        <Navbar 
-          activeTab={activeTab} 
-          setActiveTab={setActiveTab}
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
-        />
+        {/* Main Content Area directly at top */}
 
         {/* Main Content Area */}
         <main className="flex-1 w-full pb-16 md:pb-0">
