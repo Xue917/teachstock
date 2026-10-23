@@ -44,8 +44,8 @@ export default function Footer({ setActiveTab }) {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 pt-4 border-t border-slate-850 gap-2">
-          <span>© 2026 台股智勝寶典. Designed for Taiwan Stock Investors. 繁體中文專業版.</span>
-          <span>恪守風險第一・堅持價值投資・拒絕短線賭博</span>
+          <span className="font-mono text-slate-300 font-semibold">Copyright © 2026 mengxueho. All rights reserved.</span>
+          <span className="text-slate-400">台股智勝寶典 (Taiwan Stock Pro) · 恪守風險第一・堅持價值投資</span>
         </div>
       </div>
     </footer>
