@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import BeginnerGuide from './components/BeginnerGuide';
 import MarketClassroom from './components/MarketClassroom';
+import SurgePredictor from './components/SurgePredictor';
 import IndustryEncyclopedia from './components/IndustryEncyclopedia';
 import CompanyResearch from './components/CompanyResearch';
 import AdvancedTechnical from './components/AdvancedTechnical';
@@ -11,7 +12,7 @@ import Toolbox from './components/Toolbox';
 import Footer from './components/Footer';
 import MobileBottomNav from './components/MobileBottomNav';
 import { 
-  X, Compass, LineChart, Building2, Search, Zap, Target, BookOpen, Calculator, Sparkles 
+  X, Compass, LineChart, Building2, Search, Zap, Target, BookOpen, Calculator, Sparkles, Flame 
 } from 'lucide-react';
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
   const allModules = [
     { id: 'guide', label: '🧭 新手 0 到 100 實戰', desc: '開戶、交割T+2、零股、防違約地雷' },
     { id: 'market', label: '📊 看盤圖解教室', desc: '紅漲綠跌K線、五檔委託、內外盤模擬' },
+    { id: 'surge', label: '📈 股票會不會漲圖鑑', desc: '三線合一、W底、破底翻、量價配合起漲訊號' },
     { id: 'industry', label: '🏭 全台產業族群圖鑑', desc: '8大產業版圖、散戶12大盲點、24H操盤SOP' },
     { id: 'research', label: '🔍 深度研究與熱潮雷達', desc: '買股5步驟、公司體質7步法、6大照妖鏡' },
     { id: 'advanced', label: '⚡ 高階技術與當沖絕技', desc: '均線扣抵、開盤三法、百萬藍圖、期望值' },
@@ -48,6 +50,7 @@ export default function App() {
           />
         )}
         {activeTab === 'market' && <MarketClassroom />}
+        {activeTab === 'surge' && <SurgePredictor />}
         {activeTab === 'industry' && <IndustryEncyclopedia />}
         {activeTab === 'research' && <CompanyResearch />}
         {activeTab === 'advanced' && <AdvancedTechnical />}

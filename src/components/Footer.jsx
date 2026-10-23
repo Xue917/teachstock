@@ -19,6 +19,7 @@ export default function Footer({ setActiveTab }) {
           <div className="flex flex-wrap gap-4 text-xs text-slate-300">
             <button onClick={() => setActiveTab('guide')} className="hover:text-white transition">新手通關指南</button>
             <button onClick={() => setActiveTab('market')} className="hover:text-white transition">看盤教室</button>
+            <button onClick={() => setActiveTab('surge')} className="hover:text-white transition">會不會漲圖鑑</button>
             <button onClick={() => setActiveTab('industry')} className="hover:text-white transition">產業與心態圖鑑</button>
             <button onClick={() => setActiveTab('research')} className="hover:text-white transition">研究與最新熱潮</button>
             <button onClick={() => setActiveTab('advanced')} className="hover:text-white transition">高階技術與當沖</button>
