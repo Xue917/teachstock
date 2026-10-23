@@ -1,4 +1,7 @@
-# 台股智勝寶典 (Taiwan Stock Pro) - 全平台雙端開源旗艦版
+# 台股葵花寶典 - 全平台雙端實戰指南
+
+> 🔗 **線上正式網站：[https://teachstock.vercel.app/](https://teachstock.vercel.app/)**  
+> 📦 **GitHub 專案倉庫：[https://github.com/Xue917/teachstock.git](https://github.com/Xue917/teachstock.git)**
 
 專為台灣股票投資人打造的 **0 到 100 實戰交易、看盤教室、起漲形態圖鑑、全台產業版圖、深度公司研究、熱潮偵測、高階技術面兵法、當沖絕技、散戶心態避坑與百萬致富藍圖全功能系統**。
 
