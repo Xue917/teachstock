@@ -36,7 +36,7 @@ export default function Sidebar({ activeTab, setActiveTab, isOpen, setIsOpen }) 
             {isOpen && (
               <div className="whitespace-nowrap overflow-hidden transition-opacity duration-200">
                 <span className="text-sm font-extrabold text-white block truncate tracking-wide">
-                  台股智勝寶典
+                  台股葵花寶典
                 </span>
                 <span className="text-[10px] text-rose-400 font-bold block font-mono">
                   TAIWAN STOCK PRO

@@ -100,7 +100,7 @@ export default function App() {
             <div className="flex justify-between items-center pb-3 border-b border-slate-800">
               <div className="flex items-center space-x-2">
                 <Sparkles className="w-4 h-4 text-rose-500" />
-                <span className="font-bold text-base text-white">台股智勝寶典 · 完整模組目錄</span>
+                <span className="font-bold text-base text-white">台股葵花寶典 · 完整模組目錄</span>
               </div>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)}

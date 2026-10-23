@@ -122,9 +122,10 @@ export default function MarketClassroom() {
     });
   };
 
-  // Patterns for encyclopedia
+  // Patterns for encyclopedia with visual diagrams
   const patterns = [
     {
+      id: 'big-red',
       name: '大紅K棒 (長紅)',
       bias: '強烈偏多',
       color: 'text-rose-400',
@@ -132,6 +133,7 @@ export default function MarketClassroom() {
       desc: '開盤後買盤一路推升至最高點或接近最高點收盤。實體長、上下影線極短，代表多方全面掌握絕對主導權。'
     },
     {
+      id: 'big-green',
       name: '大黑K棒 (長綠)',
       bias: '強烈偏空',
       color: 'text-emerald-400',
@@ -139,6 +141,7 @@ export default function MarketClassroom() {
       desc: '開盤後賣壓湧出，一路下殺至最低點收盤。代表市場空方力量極度沉重，常伴隨恐慌拋售或主力倒貨。'
     },
     {
+      id: 'hammer',
       name: '長下影線 (鎚子線)',
       bias: '低檔支撐轉多',
       color: 'text-amber-400',
@@ -146,6 +149,7 @@ export default function MarketClassroom() {
       desc: '盤中曾大幅下跌，但在收盤前有強力買盤湧入將價格拉回。影線長度為實體 2 倍以上，代表低檔有主力強烈護盤意願。'
     },
     {
+      id: 'shooting-star',
       name: '長上影線 (避雷針)',
       bias: '高檔遇壓轉空',
       color: 'text-purple-400',
@@ -153,6 +157,7 @@ export default function MarketClassroom() {
       desc: '早盤曾大幅衝高，隨後引來沉重獲利了結或主力出貨賣壓，收盤大幅回落。常是短線見頂的危險信號。'
     },
     {
+      id: 'doji',
       name: '十字星 (十字線)',
       bias: '多空均勢變盤點',
       color: 'text-blue-400',
@@ -160,6 +165,7 @@ export default function MarketClassroom() {
       desc: '開盤價與收盤價幾乎相同，上下皆有影線。代表多空雙方廝殺激烈未分勝負，出現在波段高檔或低檔常預示即將「變盤」！'
     },
     {
+      id: 'morning-star',
       name: '早晨之星 (晨星)',
       bias: '底部反轉形態',
       color: 'text-rose-400',
@@ -167,6 +173,7 @@ export default function MarketClassroom() {
       desc: '由「長黑K + 跳空小星線 + 吞噬長紅K」組成。連續三日形成黃金底部反轉，是波段止跌買進的經典勝率信號。'
     },
     {
+      id: 'red-three-soldiers',
       name: '紅三兵 (連續長紅)',
       bias: '主升段發動',
       color: 'text-rose-400',
@@ -174,6 +181,7 @@ export default function MarketClassroom() {
       desc: '連續三根紅 K 棒，每日收盤價均高於前一日，實體穩健放大且無長上影線。多頭發起全面進攻，通常為大波段起跑標誌。'
     },
     {
+      id: 'three-black-crows',
       name: '三隻烏鴉 (連續長黑)',
       bias: '崩跌走空',
       color: 'text-emerald-400',
@@ -181,13 +189,222 @@ export default function MarketClassroom() {
       desc: '高檔連續出現三根大黑 K，每日開盤都在前一日實體內，收盤連創新低。主力不計成本傾銷，後市跌幅深不見底。'
     },
     {
+      id: 'bullish-engulfing',
       name: '多頭吞噬 (陽包陰)',
       bias: '強勢反轉',
       color: 'text-rose-400',
       bg: 'bg-rose-500/10 border-rose-500/30',
       desc: '第二根大紅 K 的實體，把前一天的黑 K 實體連頭帶尾徹底完全包覆。代表多方一天之內逆轉戰局，空頭全面繳械。'
+    },
+    {
+      id: 'bearish-engulfing',
+      name: '空頭吞噬 (陰包陽)',
+      bias: '強勢轉空',
+      color: 'text-emerald-400',
+      bg: 'bg-emerald-500/10 border-emerald-500/30',
+      desc: '第二根大黑 K 的實體，把前一天的小紅 K 實體完全覆蓋吞沒。代表高檔多頭力竭，主力反手全力摜壓。'
+    },
+    {
+      id: 'break-and-reverse',
+      name: '破底翻 (假跌破真拉升)',
+      bias: '主力誘空殺盤翻多',
+      color: 'text-sky-400',
+      bg: 'bg-sky-500/10 border-sky-500/30',
+      desc: '股價跌破頸線支撐引發散戶停損與融資砍倉，隔天立即出爆量長紅收復頸線，把空頭軋上天。'
+    },
+    {
+      id: 'guide-fairy',
+      name: '仙人指路 (測試高檔賣壓)',
+      bias: '突破試盤信號',
+      color: 'text-amber-400',
+      bg: 'bg-amber-500/10 border-amber-500/30',
+      desc: '在上升趨勢中收出帶長上影線的紅 K，隔日若跳空開高並吞噬上影線，代表主力試盤完畢即將展開噴出。'
     }
   ];
+
+  const renderPatternDiagram = (id) => {
+    switch (id) {
+      case 'big-red':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            <line x1="75" y1="8" x2="75" y2="15" stroke="#ef4444" strokeWidth="2" />
+            <rect x="58" y="15" width="34" height="50" fill="#ef4444" rx="2" />
+            <line x1="75" y1="65" x2="75" y2="72" stroke="#ef4444" strokeWidth="2" />
+            <path d="M125 55 L145 22 M145 22 L133 22 M145 22 L145 34" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round" />
+            <text x="135" y="70" fill="#ef4444" fontSize="11" fontWeight="bold" fontFamily="monospace" textAnchor="middle">+7%~10%</text>
+            <text x="22" y="44" fill="#94a3b8" fontSize="10" fontFamily="monospace">多方全勝</text>
+          </svg>
+        );
+      case 'big-green':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            <line x1="75" y1="8" x2="75" y2="15" stroke="#10b981" strokeWidth="2" />
+            <rect x="58" y="15" width="34" height="50" fill="#10b981" rx="2" />
+            <line x1="75" y1="65" x2="75" y2="72" stroke="#10b981" strokeWidth="2" />
+            <path d="M125 25 L145 58 M145 58 L133 58 M145 58 L145 46" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" />
+            <text x="135" y="22" fill="#10b981" fontSize="11" fontWeight="bold" fontFamily="monospace" textAnchor="middle">-7%~10%</text>
+            <text x="22" y="44" fill="#94a3b8" fontSize="10" fontFamily="monospace">空方灌殺</text>
+          </svg>
+        );
+      case 'hammer':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            <line x1="70" y1="12" x2="70" y2="18" stroke="#f59e0b" strokeWidth="2" />
+            <rect x="56" y="18" width="28" height="16" fill="#ef4444" rx="2" />
+            <line x1="70" y1="34" x2="70" y2="72" stroke="#f59e0b" strokeWidth="2.5" />
+            <path d="M70 72 Q 110 72, 125 42" fill="none" stroke="#f59e0b" strokeWidth="2.5" strokeDasharray="3 2" />
+            <polygon points="125,36 132,46 120,44" fill="#f59e0b" />
+            <text x="130" y="24" fill="#f59e0b" fontSize="10" fontWeight="bold" textAnchor="middle">探底強彈</text>
+            <text x="20" y="44" fill="#94a3b8" fontSize="10" fontFamily="monospace">低檔護盤</text>
+          </svg>
+        );
+      case 'shooting-star':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            <line x1="70" y1="10" x2="70" y2="48" stroke="#c084fc" strokeWidth="2.5" />
+            <rect x="56" y="48" width="28" height="16" fill="#10b981" rx="2" />
+            <line x1="70" y1="64" x2="70" y2="70" stroke="#c084fc" strokeWidth="2" />
+            <path d="M70 10 Q 110 10, 125 38" fill="none" stroke="#c084fc" strokeWidth="2.5" strokeDasharray="3 2" />
+            <polygon points="125,44 120,34 131,36" fill="#c084fc" />
+            <text x="130" y="65" fill="#c084fc" fontSize="10" fontWeight="bold" textAnchor="middle">高檔出貨</text>
+            <text x="20" y="44" fill="#94a3b8" fontSize="10" fontFamily="monospace">避雷針頂</text>
+          </svg>
+        );
+      case 'doji':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            <line x1="75" y1="12" x2="75" y2="68" stroke="#60a5fa" strokeWidth="2" />
+            <line x1="56" y1="40" x2="94" y2="40" stroke="#60a5fa" strokeWidth="4" strokeLinecap="round" />
+            <circle cx="130" cy="40" r="14" fill="#60a5fa20" stroke="#60a5fa" strokeWidth="1.5" />
+            <text x="130" y="44" fill="#60a5fa" fontSize="11" fontWeight="bold" textAnchor="middle">變盤</text>
+            <text x="20" y="44" fill="#94a3b8" fontSize="10" fontFamily="monospace">多空僵局</text>
+          </svg>
+        );
+      case 'morning-star':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            {/* Candle 1 (Green) */}
+            <line x1="42" y1="12" x2="42" y2="52" stroke="#10b981" strokeWidth="1.5" />
+            <rect x="33" y="16" width="18" height="32" fill="#10b981" rx="1" />
+            {/* Candle 2 (Gapped Down Star) */}
+            <line x1="82" y1="52" x2="82" y2="70" stroke="#f59e0b" strokeWidth="1.5" />
+            <rect x="75" y="56" width="14" height="8" fill="#ef4444" rx="1" />
+            {/* Candle 3 (Red up) */}
+            <line x1="122" y1="18" x2="122" y2="58" stroke="#ef4444" strokeWidth="1.5" />
+            <rect x="113" y="22" width="18" height="32" fill="#ef4444" rx="1" />
+            <path d="M35 65 Q 82 78, 130 65" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="2 2" />
+            <text x="155" y="44" fill="#ef4444" fontSize="10" fontWeight="bold">V轉</text>
+          </svg>
+        );
+      case 'red-three-soldiers':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            {/* Soldier 1 */}
+            <line x1="40" y1="40" x2="40" y2="70" stroke="#ef4444" strokeWidth="1.5" />
+            <rect x="32" y="44" width="16" height="20" fill="#ef4444" rx="1" />
+            {/* Soldier 2 */}
+            <line x1="80" y1="26" x2="80" y2="56" stroke="#ef4444" strokeWidth="1.5" />
+            <rect x="72" y="30" width="16" height="20" fill="#ef4444" rx="1" />
+            {/* Soldier 3 */}
+            <line x1="120" y1="12" x2="120" y2="42" stroke="#ef4444" strokeWidth="1.5" />
+            <rect x="112" y="16" width="16" height="20" fill="#ef4444" rx="1" />
+            <path d="M30 70 L70 54 L110 38 L145 15" fill="none" stroke="#ef4444" strokeWidth="2.5" />
+            <text x="155" y="44" fill="#ef4444" fontSize="10" fontWeight="bold">強攻</text>
+          </svg>
+        );
+      case 'three-black-crows':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            {/* Crow 1 */}
+            <line x1="40" y1="12" x2="40" y2="42" stroke="#10b981" strokeWidth="1.5" />
+            <rect x="32" y="16" width="16" height="20" fill="#10b981" rx="1" />
+            {/* Crow 2 */}
+            <line x1="80" y1="26" x2="80" y2="56" stroke="#10b981" strokeWidth="1.5" />
+            <rect x="72" y="30" width="16" height="20" fill="#10b981" rx="1" />
+            {/* Crow 3 */}
+            <line x1="120" y1="40" x2="120" y2="70" stroke="#10b981" strokeWidth="1.5" />
+            <rect x="112" y="44" width="16" height="20" fill="#10b981" rx="1" />
+            <path d="M30 16 L70 32 L110 48 L145 72" fill="none" stroke="#10b981" strokeWidth="2.5" />
+            <text x="155" y="44" fill="#10b981" fontSize="10" fontWeight="bold">暴跌</text>
+          </svg>
+        );
+      case 'bullish-engulfing':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            {/* Small green */}
+            <line x1="58" y1="28" x2="58" y2="54" stroke="#10b981" strokeWidth="1.5" />
+            <rect x="49" y="32" width="18" height="18" fill="#10b981" rx="1" />
+            {/* Large red engulfing */}
+            <line x1="105" y1="12" x2="105" y2="68" stroke="#ef4444" strokeWidth="2" />
+            <rect x="92" y="18" width="26" height="46" fill="#ef4444" rx="2" stroke="#f43f5e" strokeWidth="1" />
+            <text x="145" y="44" fill="#ef4444" fontSize="10" fontWeight="bold">吞噬轉多</text>
+          </svg>
+        );
+      case 'bearish-engulfing':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="10" y1="40" x2="170" y2="40" stroke="#1e293b" strokeDasharray="3 3" />
+            {/* Small red */}
+            <line x1="58" y1="28" x2="58" y2="54" stroke="#ef4444" strokeWidth="1.5" />
+            <rect x="49" y="32" width="18" height="18" fill="#ef4444" rx="1" />
+            {/* Large green engulfing */}
+            <line x1="105" y1="12" x2="105" y2="68" stroke="#10b981" strokeWidth="2" />
+            <rect x="92" y="18" width="26" height="46" fill="#10b981" rx="2" stroke="#34d399" strokeWidth="1" />
+            <text x="145" y="44" fill="#10b981" fontSize="10" fontWeight="bold">吞噬轉空</text>
+          </svg>
+        );
+      case 'break-and-reverse':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <line x1="15" y1="44" x2="165" y2="44" stroke="#38bdf8" strokeDasharray="3 2" strokeWidth="1.5" />
+            <text x="20" y="38" fill="#38bdf8" fontSize="9" fontFamily="monospace">頸線支撐</text>
+            {/* Day 1: breaks down */}
+            <line x1="72" y1="36" x2="72" y2="64" stroke="#10b981" strokeWidth="1.5" />
+            <rect x="64" y="40" width="16" height="18" fill="#10b981" rx="1" />
+            {/* Day 2: Springs up */}
+            <line x1="110" y1="16" x2="110" y2="56" stroke="#ef4444" strokeWidth="2" />
+            <rect x="100" y="20" width="20" height="32" fill="#ef4444" rx="1" />
+            <text x="145" y="30" fill="#ef4444" fontSize="10" fontWeight="bold">假破真拉</text>
+          </svg>
+        );
+      case 'guide-fairy':
+        return (
+          <svg viewBox="0 0 180 80" className="w-full h-20 select-none">
+            <rect width="180" height="80" rx="8" fill="#090d16" />
+            <path d="M20 66 L75 48 L140 22" stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="2 2" />
+            {/* Probe candle */}
+            <line x1="75" y1="12" x2="75" y2="55" stroke="#ef4444" strokeWidth="2" />
+            <rect x="65" y="40" width="20" height="12" fill="#ef4444" rx="1" />
+            {/* Breakout candle */}
+            <line x1="120" y1="8" x2="120" y2="38" stroke="#ef4444" strokeWidth="2" />
+            <rect x="110" y="14" width="20" height="20" fill="#ef4444" rx="1" />
+            <text x="135" y="55" fill="#f59e0b" fontSize="10" fontWeight="bold">高檔試盤</text>
+          </svg>
+        );
+      default:
+        return null;
+    }
+  };
 
   const activeInstitutional = INSTITUTIONAL_INVESTORS_PLAYBOOK.find(i => i.id === selectedInstitutionalId) || INSTITUTIONAL_INVESTORS_PLAYBOOK[0];
 
@@ -1021,14 +1238,20 @@ export default function MarketClassroom() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {patterns.map((p, i) => (
-              <div key={i} className={`p-5 rounded-2xl border ${p.bg} space-y-3 flex flex-col justify-between`}>
-                <div className="space-y-2">
+              <div key={i} className={`p-5 rounded-2xl border ${p.bg} space-y-3 flex flex-col justify-between shadow-lg`}>
+                <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="font-bold text-white text-base">{p.name}</span>
                     <span className={`text-xs font-semibold px-2 py-0.5 rounded ${p.color} bg-slate-900/80`}>
                       {p.bias}
                     </span>
                   </div>
+
+                  {/* Visual SVG Candlestick Graphic */}
+                  <div className="bg-slate-950 rounded-xl p-2.5 border border-slate-800/80 overflow-hidden flex items-center justify-center shadow-inner">
+                    {renderPatternDiagram(p.id)}
+                  </div>
+
                   <p className="text-xs text-slate-300 leading-relaxed">{p.desc}</p>
                 </div>
               </div>

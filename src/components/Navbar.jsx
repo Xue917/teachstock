@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { 
   Compass, LineChart, Target, BookOpen, Calculator, TrendingUp, AlertTriangle, 
-  Search, Zap, Building2, Flame, Code2, ChevronLeft, ChevronRight, Menu, PanelLeftClose, PanelLeftOpen
+  Search, Zap, Building2, Flame, ChevronLeft, ChevronRight, Menu, PanelLeftClose, PanelLeftOpen
 } from 'lucide-react';
 
 export default function Navbar({ activeTab, setActiveTab, isSidebarOpen, setIsSidebarOpen }) {
@@ -73,39 +73,6 @@ export default function Navbar({ activeTab, setActiveTab, isSidebarOpen, setIsSi
 
   return (
     <header className="sticky top-0 z-30 bg-slate-900/98 backdrop-blur-md border-b border-slate-800 shadow-xl select-none">
-      {/* Top Banner: Taiwan color rule & Market Ticker */}
-      <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 py-1 px-3 sm:px-4 text-xs border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center space-x-2 text-slate-300 text-[10px] sm:text-xs">
-          <span className="flex items-center text-amber-400 font-medium">
-            <AlertTriangle className="w-3.5 h-3.5 mr-1" />
-            台股約定：
-          </span>
-          <span className="inline-flex items-center px-1.5 py-0.2 rounded bg-rose-500/20 text-rose-400 border border-rose-500/30 font-semibold">
-            🔴 紅漲 (買盤強)
-          </span>
-          <span className="inline-flex items-center px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-semibold">
-            🟢 綠跌 (賣壓重)
-          </span>
-          <span className="text-slate-400 hidden sm:inline text-[10px]">
-            ※ 與美股相反
-          </span>
-        </div>
-
-        <div className="flex items-center space-x-3 text-slate-300 font-mono text-[10px] sm:text-[11px] overflow-x-auto scrollbar-none">
-          <span className="flex items-center whitespace-nowrap">
-            加權: <strong className="text-rose-400 ml-1 font-semibold">23,542.80 ▲ +168.35 (+0.72%)</strong>
-          </span>
-          <span className="hidden md:inline text-slate-600">|</span>
-          <span className="hidden md:flex items-center whitespace-nowrap">
-            櫃買: <strong className="text-rose-400 ml-1 font-semibold">271.85 ▲ +1.15</strong>
-          </span>
-          <span className="hidden lg:inline text-slate-600">|</span>
-          <span className="hidden lg:flex items-center whitespace-nowrap">
-            三大法人: <strong className="text-rose-400 ml-1 font-semibold">+182.4 億</strong>
-          </span>
-        </div>
-      </div>
-
       {/* Brand Header Row with Sidebar Toggle */}
       <div className="px-3 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between border-b border-slate-800/60">
         <div className="flex items-center space-x-2.5 sm:space-x-3">
@@ -130,7 +97,7 @@ export default function Navbar({ activeTab, setActiveTab, isSidebarOpen, setIsSi
             <div>
               <div className="flex items-center space-x-2">
                 <span className="text-sm sm:text-lg font-black tracking-wide bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
-                  台股智勝寶典
+                  台股葵花寶典
                 </span>
                 <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
                   PRO
@@ -140,21 +107,14 @@ export default function Navbar({ activeTab, setActiveTab, isSidebarOpen, setIsSi
           </div>
         </div>
 
-        {/* GitHub Link & Drag hint */}
-        <div className="flex items-center space-x-3">
-          <span className="hidden xl:inline text-[11px] text-slate-400 font-mono">
-            💡 提示：下方選單支援「滑鼠點擊拖曳」與「滾輪左右滾動」
+        {/* Right side status badge */}
+        <div className="flex items-center space-x-2 text-xs">
+          <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700 text-[11px] font-mono">
+            新手 0 到 100 實戰指南
           </span>
-
-          <a
-            href="https://github.com/Xue917/teachstock"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-200 transition"
-          >
-            <Code2 className="w-4 h-4 text-white" />
-            <span className="hidden sm:inline">開源倉庫</span>
-          </a>
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[11px] font-semibold">
+            🔴 紅漲 🟢 綠跌
+          </span>
         </div>
       </div>
 
@@ -178,7 +138,7 @@ export default function Navbar({ activeTab, setActiveTab, isSidebarOpen, setIsSi
 
         {/* The Draggable Container */}
         <div className="px-3 sm:px-6">
-          <nav
+          <div
             ref={scrollRef}
             onScroll={checkScroll}
             onMouseDown={handleMouseDown}
@@ -195,35 +155,28 @@ export default function Navbar({ activeTab, setActiveTab, isSidebarOpen, setIsSi
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`relative flex items-center space-x-1.5 px-3.5 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap shrink-0 transition-all duration-200 min-h-[36px] sm:min-h-[38px] touch-manipulation ${
+                  className={`flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 shrink-0 ${
                     isActive
-                      ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30 ring-1 ring-rose-400'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-800'
+                      ? 'bg-rose-500 text-white shadow-md shadow-rose-500/30 scale-[1.02]'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/80'
                   }`}
                 >
                   <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`} />
-                  <span className="whitespace-nowrap">{item.label}</span>
-                  {item.badge && (
-                    <span
-                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold shrink-0 ${
-                        isActive
-                          ? 'bg-rose-950/70 text-rose-200'
-                          : 'bg-slate-800 text-slate-400 border border-slate-700/50'
-                      }`}
-                    >
-                      {item.badge}
-                    </span>
-                  )}
+                  <span>{item.label}</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono shrink-0 ${
+                      isActive
+                        ? 'bg-rose-700/80 text-white'
+                        : 'bg-slate-800 text-slate-400'
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
                 </button>
               );
             })}
-          </nav>
+          </div>
         </div>
-
-        {/* Right Edge Fade Mask */}
-        {canScrollRight && (
-          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none z-10" />
-        )}
 
         {/* Right Scroll Button */}
         {canScrollRight && (
@@ -234,6 +187,11 @@ export default function Navbar({ activeTab, setActiveTab, isSidebarOpen, setIsSi
           >
             <ChevronRight className="w-4 h-4" />
           </button>
+        )}
+
+        {/* Right Edge Fade Mask */}
+        {canScrollRight && (
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none z-10" />
         )}
       </div>
     </header>

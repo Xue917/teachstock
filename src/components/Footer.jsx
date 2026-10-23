@@ -11,7 +11,7 @@ export default function Footer({ setActiveTab }) {
               <TrendingUp className="w-4 h-4 text-slate-950 font-bold" />
             </div>
             <div>
-              <span className="text-white font-bold text-sm block">台股智勝寶典 (Taiwan Stock Pro)</span>
+              <span className="text-white font-bold text-sm block">台股葵花寶典 (Taiwan Stock Sunflower Manual)</span>
               <span className="text-[11px] text-slate-400">完全新手 0 到 100 實戰・專業看盤與四維體檢評估系統</span>
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function Footer({ setActiveTab }) {
 
         <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 pt-4 border-t border-slate-850 gap-2">
           <span className="font-mono text-slate-300 font-semibold">Copyright © 2026 mengxueho. All rights reserved.</span>
-          <span className="text-slate-400">台股智勝寶典 (Taiwan Stock Pro) · 恪守風險第一・堅持價值投資</span>
+          <span className="text-slate-400">台股葵花寶典 · 恪守風險第一・堅持價值投資</span>
         </div>
       </div>
     </footer>
